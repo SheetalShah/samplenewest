@@ -1,5 +1,7 @@
 Samplenewest::Application.routes.draw do
+  resources :users
   get "users/new"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,4 +59,20 @@ Samplenewest::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+	get "users/home"
+	get "users/help"
+	get "users/aboutus"
+	get "users/contactus"
+	get "users/request"
+	get "users/feedback"
+
+	root to: 'users#home'
+	match '/Samplenewest/help',	to: 'users#help'
+	match '/Samplenewest/aboutus', to: 'users#aboutus'
+	match '/Samplenewest/contactus', to: 'users#contactus'
+	match '/Samplenewest/terms', to: 'users#terms'
+	match 'Samplenewest/privacy', to: 'users#privact'
+	match 'Samplenewest/request', to: 'users#requestenhancement'
+	match 'Samplenewest/feedback', to: 'users#feedback'
+	match '/signup', to: 'users#new'
 end
