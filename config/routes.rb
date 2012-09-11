@@ -1,5 +1,6 @@
 Samplenewest::Application.routes.draw do
   resources :users
+  resources :sessions, only: [ :new, :create, :destroy ]
   get "users/new"
 
 
@@ -67,12 +68,15 @@ Samplenewest::Application.routes.draw do
 	get "users/feedback"
 
 	root to: 'users#home'
-	match '/Samplenewest/help',	to: 'users#help'
-	match '/Samplenewest/aboutus', to: 'users#aboutus'
-	match '/Samplenewest/contactus', to: 'users#contactus'
-	match '/Samplenewest/terms', to: 'users#terms'
-	match 'Samplenewest/privacy', to: 'users#privact'
-	match 'Samplenewest/request', to: 'users#requestenhancement'
-	match 'Samplenewest/feedback', to: 'users#feedback'
+	match '/home', to: 'users#home'
+	match '/help',	to: 'users#help'
+	match '/aboutus', to: 'users#aboutus'
+	match '/contactus', to: 'users#contactus'
+	match '/terms', to: 'users#terms'
+	match '/privacy', to: 'users#privact'
+	match '/request', to: 'users#requestenhancement'
+	match '/feedback', to: 'users#feedback'
 	match '/signup', to: 'users#new'
+	match '/signin', to: 'sessions#new'
+	match '/signout', to: 'sessions#destroy', via: :delete
 end
