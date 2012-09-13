@@ -1,6 +1,19 @@
 <% provide(:title, 'Home' ) %>
 <!DOCTYPE html>
 <html>
+<% if signed_in? %>
+	<div class="row">
+	 <aside class="span4">
+	   <section>
+		<%= render 'shared/user_info' %>
+	   </section>
+	 </aside>
+	 <div class="span8">
+	   <h3>Micropost Feed</h3>
+		<%= render 'shared/feed' %>
+	 </div>
+	</div>
+<% else %>
 	<div class="center hero-unit">
 		<h1>Welcome to the Sample App</h1>
 		<h2>
