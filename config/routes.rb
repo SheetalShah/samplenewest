@@ -1,7 +1,13 @@
 Samplenewest::Application.routes.draw do
-  resources :users
+  resources :users do
+	member do
+		get :following, :followers
+	end
+  end
+
   resources :sessions, only: [ :new, :create, :destroy ]
   resources :microposts, only: [ :create, :destroy ]
+  resources :relationships, only: [:create, :destroy]
   get "users/new"
 
 
@@ -61,12 +67,12 @@ Samplenewest::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-	get "users/home"
-	get "users/help"
-	get "users/aboutus"
-	get "users/contactus"
-	get "users/request"
-	get "users/feedback"
+#	get "users/home"
+#	get "users/help"
+#	get "users/aboutus"
+#	get "users/contactus"
+#	get "users/request"
+#	get "users/feedback"
 
 	root to: 'users#home'
 	match '/home', to: 'users#home'
@@ -80,4 +86,6 @@ Samplenewest::Application.routes.draw do
 	match '/signup', to: 'users#new'
 	match '/signin', to: 'sessions#new'
 	match '/signout', to: 'sessions#destroy', via: :delete
+	match '/microposts', to: 'microposts#create'
+	match '/microposts/1', to: 'microposts#destroy'
 end
